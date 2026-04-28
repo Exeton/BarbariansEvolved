@@ -704,10 +704,11 @@ function BarbEvolvedCivStartTurn(iPlayer)
 	-- CALLED ON EACH PLAYER'S TURN - zero Barbarian faith in case the Barbarians somehow get faith on turn 0 by spawning on top of a ruin
 	if isUsingBarbarianCiv and IsDefaultBarbMajorCiv() then
 		local pPlayer = Players[iBarbMajorCiv]
-
-		if (pPlayer:GetNumCities() == 0) and (pPlayer:GetFaith() > 0) then
-			print("BarbEvolvedCivStartTurn: Barbarian major civ has nonzero faith but zero cities.  Fixing...")
-			pPlayer:SetFaith(0)
+		if isUsingBNW or isUsingGNK then
+			if (pPlayer:GetNumCities() == 0) and (pPlayer:GetFaith() > 0) then
+				print("BarbEvolvedCivStartTurn: Barbarian major civ has nonzero faith but zero cities.  Fixing...")
+				pPlayer:SetFaith(0)
+			end
 		end
 	end
 
